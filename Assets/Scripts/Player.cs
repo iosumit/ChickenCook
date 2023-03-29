@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
         if (moveDir != Vector3.zero)
             lastInteractDir = moveDir;
-        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, intractionDistance))
+        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, intractionDistance, layerMask))
         {
             if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
             {
