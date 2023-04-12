@@ -10,7 +10,7 @@ public class ClearCounter : MonoBehaviour
     [SerializeField] private ClearCounter secondClearCounter;
 
 
-    bool testing = true;
+    [SerializeField] private bool testing;
     void Update()
     {
         if (testing && Input.GetKeyDown(KeyCode.T))
@@ -28,10 +28,7 @@ public class ClearCounter : MonoBehaviour
         if (kitchenObject == null)
         {
             Transform kitchenObjectTransorm = Instantiate(kitchenObjectSO.prefab, counterTopPoint);
-            kitchenObjectTransorm.localPosition = Vector3.zero;
-
-            kitchenObject = kitchenObjectTransorm.GetComponent<KitchenObject>();
-            kitchenObject.SetClearCounter(this);
+            kitchenObjectTransorm.GetComponent<KitchenObject>().SetClearCounter(this);
         }
         // Table Have Object
         else
@@ -42,5 +39,21 @@ public class ClearCounter : MonoBehaviour
     public Transform GetKitchenObjectFollowTransform()
     {
         return counterTopPoint;
+    }
+    public void SetKitchenObject(KitchenObject kitchenObject)
+    {
+        this.kitchenObject = kitchenObject;
+    }
+    public KitchenObject GetKitchenObject()
+    {
+        return kitchenObject;
+    }
+    public void ClearKitchenObject()
+    {
+        kitchenObject = null;
+    }
+    public bool HasKitchenObject()
+    {
+        return kitchenObject != null;
     }
 }
